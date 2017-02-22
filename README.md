@@ -10,10 +10,11 @@ For Unix sytems:
 which python
 ```
 
-For windows:
+
+To install required packages:
 
 ```bash 
-pip install -r requiremetns.txt 
+pip install -r requirements.txt 
 ```
 
 
