@@ -1,29 +1,26 @@
-
 % include '.m' files
 addpath('./')
 addpath('./lib')
 
 % Read sample images 
+impaths = glob('../images/edges_*.png');
 imgs = {};
-impaths = glob('../images/samples/img_*.png');
 for i = 1:length(impaths)
     disp(['Reading image ', num2str(i)])
     imgs{i} = imread(impaths{i});
 end
 
-img = imgs{1};
-
+img = imgs{6};
+imshow(img)
 
 % define median filtering window size, 
 % canny edge filtering sigma value, and 
 % the threshold for binary filling
-window = [4 4]; sigma = 1; pxthresh=250;
+window = [2 2]; sigma = 2; pxthresh=200;
 [denoised edges filled cleaned labels]=algorithm(img, window, sigma, pxthresh);
-
-
-for i = 1:length(imgs)
-    imshow(imgs{i})
-end
+imshow(edges)
+imshow(filled)
+imshow(cleaned)
 
 
 %----------------
@@ -65,9 +62,6 @@ end
 
 
 
-
-
-
 % --------------------------------------------
 %   Plot objects and labels
 % --------------------------------------------
@@ -93,25 +87,11 @@ imshow(img)
 
 zoom = [100 10];
 M = Find_xform(img,zoom);
-%save('floorM.mat', 'M')
-%load floorM
-%disp('* Select an arbitrary points in the image to convert.')
-%prc = Select_im_pts(im,1);
 
 
-%front = [480 - front(1), 640-front(2)];
-%back = [480 - back(1), 640-back(2)];
 front_xy, back_xy 
 front_xy = rc2xy(M,front');
 back_xy = rc2xy(M,back');
 
 calculatePose(front,back)
 calculatePose(front_xy,back_xy)
-
-atan((front(2)-back(2))/(front(1) - back(1)))
-back
-
-front(2) - back(2)
-
-
-
