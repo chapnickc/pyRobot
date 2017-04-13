@@ -56,6 +56,24 @@ end
 save('labeled_rgb.mat', 'labeled_rgb') % save the RGB 
 save('labeled_rgb_round2.mat', 'labeled_rgb') % save the RGB 
 
+%M = zeros(length(labeled_rgb),4);
+M = [];
+for i = 1:length(labeled_rgb)
+    start = size(M,1);
+    m = labeled_rgb{i};
+    for k = 1:size(m,1)
+        M(start+k,:) =  m(k,:);
+    end
+end
+
+
+%save('rgb-training.mat', 'M') % save the RGB 
+save('.rgb-training.mat', 'M') % save the RGB 
+
+
+
+
+
 
 size(labeled_rgb)
 
