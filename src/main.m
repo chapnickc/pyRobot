@@ -17,7 +17,8 @@ end
 
  % 13
 %img = imgs{23};
-img = imgs{6};
+img = imgs{5};
+%img = imgs{6};
 imshow(img)
 
 % define median filtering window size, 

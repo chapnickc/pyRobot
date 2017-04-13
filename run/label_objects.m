@@ -4,7 +4,7 @@ addpath('./lib')
 
 % Read sample images 
 imgs = {};
-impaths = glob('../images/newmask/justmask_*.png');
+impaths = glob('./images/edges_*.png');
 for i = 1:length(impaths)
     disp(['Reading image ', num2str(i)])
     imgs{i} = imread(impaths{i});
@@ -14,17 +14,13 @@ end
 % define median filtering window size, 
 % canny edge filtering sigma value, and 
 % the threshold for binary filling
-window = [4 4]; sigma = 1.5; pxthresh=300;
+window = [2 2]; sigma = 2; pxthresh=200;
 labeled_rgb = {}
 for i = 1:length(imgs)
-
     img = imgs{i};
-
     [denoised edges filled cleaned labels]=algorithm(imgs{i}, window, sigma, pxthresh);
-
     disp(['showing image ', num2str(i)]);
     imshow(imgs{i}); hold on 
-
     % get rgb values for each label and store in matrix
     s = regionprops(labels, 'Centroid'); 
     RGB = zeros(size(s,1), 4);  % red | green | blue | actual label 
@@ -40,13 +36,16 @@ for i = 1:length(imgs)
     end
     hold off;
 
-    for label=1:numel(s)
-        prompt = ['Please enter the correct color for label ',num2str(label),':\n',...
-        '0 = noise | 1 = blue | 2 = green | 3 = pink\n'];
-        color = input(prompt);
-        RGB(label,4) = color;
+    keep = input('Keep or skip this image: \n0 = skip   1=keep\n');
+    if (keep == 1) 
+        for label=1:numel(s)
+            prompt = ['Please enter the correct color for label ',num2str(label),':\n',...
+            '0 = noise | 1 = blue | 2 = green | 3 = pink\n'];
+            color = input(prompt);
+            RGB(label,4) = color;    
+        end
+        labeled_rgb{i} = RGB;
     end
-    labeled_rgb{i} = RGB;
 end
 
 

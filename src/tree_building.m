@@ -49,7 +49,6 @@ for label=1:numel(s)
     RGB(label,:) = reshape(rgb,1,3);
 end
 
-
 % Red vs Green and labels for each point
 figure(2); 
 plot(RGB(:,1), RGB(:,2), 'r.'); hold on
