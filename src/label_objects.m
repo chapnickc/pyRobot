@@ -2,16 +2,24 @@
 % include '.m' files
 addpath('./')
 addpath('./lib')
+ls
 
 % Read sample images 
-imgs = {};
-impaths = glob('../images/newmask/justmask_*.png');
-
 impaths = glob('../images/samples/img_*.png');
-for i = 1:length(impaths)
-    disp(['Reading image ', num2str(i)])
+N = length(impaths);
+disp(['Found  ', num2str(N), ' images'])
+imgs = {};
+for i = 1:length(N)
     imgs{i} = imread(impaths{i});
 end
+
+
+size(imgs)
+imgs = readimgs(impaths);
+
+size(imgs)
+size(imgs{1})
+
 
 img = imgs{8};
 imshow(img)

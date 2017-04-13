@@ -2,6 +2,7 @@
 % revision history: none
 % 
 % purpose: 
+%   read a regular expression of images into cell array
 %
 % input variables: 
 %   window      := define median filtering window size
@@ -9,13 +10,14 @@
 %   pxthresh    := the threshold for binary filling
 %
 % output variables:
-%   [denoised ,edges filled, cleaned, labels]
+%   img
 % ------------------------------------------------------------------------------
-function [denoised ,edges filled, cleaned, labels] = algorithm(img, window, sigma, pxthresh)
-    imgray = rgb2gray(img);
-    denoised = medfilt2(imgray, window,'symmetric');
-    edges = edge(denoised,'Canny',[],sigma); 
-    filled = imfill(edges,'holes'); 
-    cleaned = bwareaopen(filled, pxthresh);
-    labels = bwlabel(cleaned);
+%addpath('./lib')
+function imgs = readimgs(impaths)
+    N = length(impaths);
+    disp(['Found  ', num2str(N), ' images'])
+    imgs = {};
+    for i = 1:length(N)
+        imgs{i} = imread(impaths{i});
+    end
 end
