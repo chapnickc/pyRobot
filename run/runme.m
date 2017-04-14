@@ -1,5 +1,3 @@
-
-
 addpath('./')
 addpath('./lib')
 addpath('./lib/ebel')
@@ -28,12 +26,12 @@ while (1) % main loop
     imshow(img)
 
     
-    [denoised edges filled cleaned labels] = algorithm(img, neighborhood, sigma, pxthresh);
+    %[denoised edges filled cleaned labeled] = algorithm(img, neighborhood, sigma, pxthresh);
     [~,~,~,~, labeled] = algorithm(img, neighborhood, sigma, pxthresh);
     
     % classify the centroids of all found objects 
     centerStruct = regionprops(labeled, 'Centroid'); 
-    [color_labels,centers] = classifyPoints(img, centerStruct);
+    [color_labels, centers] = classifyPoints(img, centerStruct);
 
     % find the coordinates and indicies of each color in the labels array
     [pink_coords, pinkix] = findColor(centerStruct, color_labels, 'pink');
@@ -49,6 +47,7 @@ while (1) % main loop
 
     % Path Planning
     [dilated, mask] = dilateObjects(img,labeled, blueix);
+
 
 
 
