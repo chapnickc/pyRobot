@@ -67,7 +67,7 @@ end
 %   Plot objects and labels
 % --------------------------------------------
 figure(1)
-s = regionprops(labels, 'Centroid'); 
+s = regionprops(labeled, 'Centroid'); 
 imshow(img)
 hold on
 for k = 1:numel(s)
@@ -87,7 +87,7 @@ front, back
 imshow(img)
 
 zoom = [100 10];
-M = Find_xform(img,zoom);
+[M pts] = Find_xform(img,zoom);
 
 
 front_xy, back_xy 

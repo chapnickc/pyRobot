@@ -112,6 +112,8 @@ p01px = [p01px(:)' 1];  p01ph = [p01ph(:)' 1];
 p10px = [p10px(:)' 1];  p10ph = [p10ph(:)' 1];
 p11px = [p11px(:)' 1];  p11ph = [p11ph(:)' 1];
 
+pts = [p00ph,p01ph,p10ph,p11ph,p00px,p01px,p10px,p11px];
+
 M = Find_M(p00ph,p01ph,p10ph,p11ph,p00px,p01px,p10px,p11px);
 
 % Check the calculations
