@@ -11,9 +11,9 @@
 % Output Variables:
 %   [denoised ,edges filled, cleaned, labels]
 % ------------------------------------------------------------------------------
-function [denoised ,edges filled, cleaned, labels] = algorithm(img, window, sigma, pxthresh)
+function [denoised ,edges filled, cleaned, labels] = algorithm(img, neighborhood, sigma, pxthresh)
     imgray = rgb2gray(img);
-    denoised = medfilt2(imgray, window,'symmetric');
+    denoised = medfilt2(imgray, neighborhood,'symmetric');
     edges = edge(denoised,'Canny',[],sigma); 
     filled = imfill(edges,'holes'); 
     cleaned = bwareaopen(filled, pxthresh);

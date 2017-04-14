@@ -3,14 +3,14 @@ addpath('./')
 addpath('./lib')
 
 % Read sample images 
-impaths = glob('../images/edges_*.png');
+impaths = glob('./images/edges_*.png');
 imgs = {};
 for i = 1:length(impaths)
     disp(['Reading image ', num2str(i)])
     imgs{i} = imread(impaths{i});
 end
 
-img = imgs{6};
+img = imgs{5};
 imshow(img)
 
 % define median filtering window size, 
@@ -67,7 +67,7 @@ end
 % --------------------------------------------
 figure(1)
 s = regionprops(labels, 'Centroid'); 
-imshow(cleaned)
+imshow(img)
 hold on
 for k = 1:numel(s)
     c = s(k).Centroid;

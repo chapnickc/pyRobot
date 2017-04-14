@@ -2,6 +2,17 @@
 load 'rgb-training.mat'
 whos
 
+X = M(:,1:3);
+
+i = 2;
+x_ = M(i,1:3);
+y_ = M(i,4);
+
+
+classify_point(x_)
+
+
+
 % 0 = noise | 1 = blue | 2 = green | 3 = pink
 labels = M(:,4);
 classes = unique(labels);
