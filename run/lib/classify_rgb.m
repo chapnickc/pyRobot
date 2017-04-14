@@ -12,10 +12,10 @@
 %
 % ------------------------------------------------------------------------------
 function predicted = classify_rgb(rgb,ix)
-    predicted = [];
+    predicted = '';
     if size(rgb,2) < 3; return; end
     if nargin < 2; ix=1; end
-    load('./trained-SVMModels.mat')
+    load('trained-SVMModels.mat')
     classes={'noise','blue','green','pink'};
     
     if predict(models{ix}, rgb) == 1

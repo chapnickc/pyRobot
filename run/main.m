@@ -32,6 +32,7 @@ imshow(edges); imshow(filled); imshow(cleaned);
 imagesc(labels); colormap(jet(num_labels))
 
 
+
 %imwrite(img,'../images/present/rgb_input.png') %imwrite(denoised,'../images/present/denoised.png') %imwrite(edges,'../images/present/edges.png') %imwrite(filled,'../images/present/filled.png') %imwrite(cleaned,'../images/present/cleaned.png') %imwrite(labels,'../images/present/labeles.png') 
 
 % get rgb values for each label and store in matrix
