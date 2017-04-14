@@ -22,7 +22,6 @@ for i = 1:length(imgs)
     [denoised edges filled cleaned labels]=algorithm(img, window, sigma, pxthresh);
     disp(['showing image ', num2str(i)]);
     imshow(img); hold on 
-
     % get rgb values for each label and store in matrix
     s = regionprops(labels, 'Centroid'); 
     RGB = zeros(size(s,1), 4);  % red | green | blue | actual label 
@@ -37,7 +36,6 @@ for i = 1:length(imgs)
         RGB(label,1:3) = reshape(rgb,1,3);
     end
     hold off;
-
     for row=1:length(s)
         prompt = ['Please enter the correct color for label ',num2str(row),':\n',...
         '0 = noise | 1 = blue | 2 = green | 3 = pink\n'];
@@ -47,16 +45,11 @@ for i = 1:length(imgs)
         end
         RGB(row,4) = color;    
     end
-
     labeled_rgb{i} = RGB;
 end
 
 
-% delete img 32
-save('labeled_rgb.mat', 'labeled_rgb') % save the RGB 
-save('labeled_rgb_round2.mat', 'labeled_rgb') % save the RGB 
-
-%M = zeros(length(labeled_rgb),4);
+% concatenate results
 M = [];
 for i = 1:length(labeled_rgb)
     start = size(M,1);
@@ -67,13 +60,10 @@ for i = 1:length(labeled_rgb)
 end
 
 
-%save('rgb-training.mat', 'M') % save the RGB 
-save('.rgb-training.mat', 'M') % save the RGB 
+save('rgb-training.mat', 'M') % save the RGB 
+%save('.rgb-training.mat', 'M') % save the RGB 
+% delete img 32
+%save('labeled_rgb.mat', 'labeled_rgb') % save the RGB 
+%save('labeled_rgb_round2.mat', 'labeled_rgb') % save the RGB 
 
-
-
-
-
-
-size(labeled_rgb)
 
