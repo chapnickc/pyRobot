@@ -1,42 +1,26 @@
-
 % include '.m' files
 addpath('./')
 addpath('./lib')
 
 % Read sample images 
-
-%impaths = glob('../images/samples/img_*.png');
-%impaths = glob('../images/newmask/newmask_*.png');
-impaths = glob('../images/edges_*.png');
-%impaths = glob('../images/mask_PinkGreen/train*.jpg');
+impaths = glob('./images/edges_*.png');
 imgs = {};
 for i = 1:length(impaths)
     disp(['Reading image ', num2str(i)])
     imgs{i} = imread(impaths{i});
 end
 
- % 13
-%img = imgs{23};
 img = imgs{5};
-%img = imgs{6};
 imshow(img)
 
 % define median filtering window size, 
 % canny edge filtering sigma value, and 
 % the threshold for binary filling
-window = [2 2]; 
-sigma = 2; 
-pxthresh=200;
+window = [2 2]; sigma = 2; pxthresh=200;
 [denoised edges filled cleaned labels]=algorithm(img, window, sigma, pxthresh);
 imshow(edges)
 imshow(filled)
 imshow(cleaned)
-
-figure(2)
-imshow(img)
-
-
-%for i = 1:length(imgs) imshow(imgs{i}) end
 
 
 %----------------
@@ -46,6 +30,7 @@ num_labels = max(max(labels));
 imshow(img); imshow(denoised);
 imshow(edges); imshow(filled); imshow(cleaned);
 imagesc(labels); colormap(jet(num_labels))
+
 
 
 %imwrite(img,'../images/present/rgb_input.png') %imwrite(denoised,'../images/present/denoised.png') %imwrite(edges,'../images/present/edges.png') %imwrite(filled,'../images/present/filled.png') %imwrite(cleaned,'../images/present/cleaned.png') %imwrite(labels,'../images/present/labeles.png') 
@@ -76,19 +61,14 @@ for row =1:size(RGB,1)
     disp([num2str(row), '  ' colors{row}])
 end
 
-figure(2)
-imshow(imgs{4})
-
-
-
 
 
 % --------------------------------------------
 %   Plot objects and labels
 % --------------------------------------------
 figure(1)
-s = regionprops(labels, 'Centroid'); 
-imshow(cleaned)
+s = regionprops(labeled, 'Centroid'); 
+imshow(img)
 hold on
 for k = 1:numel(s)
     c = s(k).Centroid;
@@ -107,26 +87,12 @@ front, back
 imshow(img)
 
 zoom = [100 10];
-M = Find_xform(img,zoom);
-%save('floorM.mat', 'M')
-%load floorM
-%disp('* Select an arbitrary points in the image to convert.')
-%prc = Select_im_pts(im,1);
+[M pts] = Find_xform(img,zoom);
 
 
-%front = [480 - front(1), 640-front(2)];
-%back = [480 - back(1), 640-back(2)];
 front_xy, back_xy 
 front_xy = rc2xy(M,front');
 back_xy = rc2xy(M,back');
 
 calculatePose(front,back)
 calculatePose(front_xy,back_xy)
-
-atan((front(2)-back(2))/(front(1) - back(1)))
-back
-
-front(2) - back(2)
-
-
-

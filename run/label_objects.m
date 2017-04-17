@@ -3,13 +3,7 @@ addpath('./')
 addpath('./lib')
 
 % Read sample images 
-imgs = {};
-impaths = glob('./images/edges_*.png');
-for i = 1:length(impaths)
-    disp(['Reading image ', num2str(i)])
-    imgs{i} = imread(impaths{i});
-end
-
+imgs = myimread('./images/april17/edges_*.png');
 
 % define median filtering window size, 
 % canny edge filtering sigma value, and 
@@ -60,7 +54,9 @@ for i = 1:length(labeled_rgb)
 end
 
 
-save('rgb-training.mat', 'M') % save the RGB 
+save('april17-rgb-training.mat', 'M') % save the RGB 
+%save('april17-labeled-rgb.mat', 'labeled_rgb') % save the RGB 
+save('.april-17-rgb-training.mat', 'M') % save the RGB 
 %save('.rgb-training.mat', 'M') % save the RGB 
 % delete img 32
 %save('labeled_rgb.mat', 'labeled_rgb') % save the RGB 

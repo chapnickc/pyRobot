@@ -13,7 +13,7 @@ startpoint = [34,350]; endpoint = [510, 83];
 
 % Main Loop
 timer=60; tic
-while abs(toc - x) < timer
+while abs(toc) < timer
     %img = cam.snapshot;
     [~,~,~,~, labeled] = algorithm(img, neighborhood, sigma, pxthresh);
     
@@ -22,7 +22,6 @@ while abs(toc - x) < timer
     [color_labels, centers] = classifyPoints(img, centerStruct);
 
     % find the coordinates and indicies of each color in the labels array
-   
     [pink_coords, pinkix] = findColor(centerStruct, color_labels, 'pink');
     [green_coords, greenix] = findColor(centerStruct, color_labels,'green');
     [blue_coords, blueix] = findColor(centerStruct, color_labels,'blue');
