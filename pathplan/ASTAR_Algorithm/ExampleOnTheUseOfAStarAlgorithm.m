@@ -44,7 +44,7 @@ MAP(125:128,10:11)=1; MAP(100:110,30:40)=1; MAP(1:20,100:128)=1; MAP(10:20,80:12
 MAP(1:40,90:90)=1; MAP(100:105,70:80)=1; 
 
 % Running PathFinder
-OptimalPath= ASTARPATH(StartX,StartY,MAP, GoalRegister, Connecting_Distance);
+OptimalPath= pathAStar(StartX,StartY,MAP, GoalRegister, Connecting_Distance);
 
 if size(OptimalPath,2)>1
     figure;
