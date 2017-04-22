@@ -1,4 +1,4 @@
-function OptimalPath= path_AStar(StartX,StartY,MAP,GoalRegister,Connecting_Distance)
+function OptimalPath= pathAStar(StartX,StartY,MAP,GoalRegister,Connecting_Distance)
     %Version 1.0
     % By Einar Ueland 2nd of May, 2016
 
@@ -18,25 +18,25 @@ function OptimalPath= path_AStar(StartX,StartY,MAP,GoalRegister,Connecting_Dista
     ParentY=int16(zeros(Height,Width));   %Matrix keeping track of Y position of parent
 
 
-    %%% Setting up matrices representing neighboors to be investigated
-    NeighboorCheck=ones(2*Connecting_Distance+1);
-    Dummy=2*Connecting_Distance+2;
+    % Setting up matrices representing neighboors to be investigated
+    NeighboorCheck = ones(2 * Connecting_Distance + 1);
+    Dummy = 2 * Connecting_Distance + 2;
     Mid=Connecting_Distance+1;
-    for i=1:Connecting_Distance-1
-        NeighboorCheck(i,i)=0;
-        NeighboorCheck(Dummy-i,i)=0;
-        NeighboorCheck(i,Dummy-i)=0;
-        NeighboorCheck(Dummy-i,Dummy-i)=0;
-        NeighboorCheck(Mid,i)=0;
-        NeighboorCheck(Mid,Dummy-i)=0;
-        NeighboorCheck(i,Mid)=0;
-        NeighboorCheck(Dummy-i,Mid)=0;
+    for i = 1:Connecting_Distance - 1
+        NeighboorCheck(i,i) = 0;
+        NeighboorCheck(Dummy-i,i) = 0;
+        NeighboorCheck(i,Dummy-i) = 0;
+        NeighboorCheck(Dummy-i,Dummy-i) = 0;
+        NeighboorCheck(Mid,i) = 0;
+        NeighboorCheck(Mid,Dummy-i) = 0;
+        NeighboorCheck(i,Mid) = 0;
+        NeighboorCheck(Dummy-i,Mid) = 0;
     end
     NeighboorCheck(Mid,Mid)=0;
 
-    [row, col]=find(NeighboorCheck==1);
-    Neighboors=[row col]-(Connecting_Distance+1);
-    N_Neighboors=size(col,1);
+    [row, col] = find(NeighboorCheck == 1 );
+    Neighboors = [row col] - (Connecting_Distance + 1);
+    N_Neighboors = size(col,1);
 
 
 

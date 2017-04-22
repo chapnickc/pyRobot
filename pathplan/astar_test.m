@@ -1,6 +1,7 @@
 addpath('./')
-addpath('./lib')
-addpath('./lib/ebel')
+addpath('../run')
+addpath('../run/lib')
+addpath('../run/lib/ebel')
 load FloorXform
 
 RESAMPLE=false;
@@ -42,10 +43,9 @@ while abs(toc) < timer
 
     connecting_distance=9; 
     GoalRegister=int8(zeros(size(dilated)));
+    GoalRegister(endpoint)=1;
     path_AStar(startpoint(1),startpoint(2), dilated, GoalRegister, connecting_distance)
-    imshow(dilated)
-
-
+    %imshow(dilated)
 end
 
 
@@ -58,7 +58,7 @@ end
 %-----------------------------------------------------------
 
 % Read sample images 
-imgs = myimread('./images/edges_*.png');
+imgs = myimread('../run/images/edges_*.png');
 img = imgs{10};
 
 imshow(img)
@@ -101,8 +101,10 @@ imshow(dilated); hold on
 
 
 
-
-
+imagesc(dilated); 
+hold on
+plot(OptimalPath(:,1), OptimalPath(:,2), 'r.')
+hold off;
 
 
 
