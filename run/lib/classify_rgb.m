@@ -18,17 +18,18 @@
 % ------------------------------------------------------------------------------
 function predicted = classify_rgb(rgb,ix)
     predicted = '';
-    if size(rgb,2) < 3; return; end
-    if nargin < 2; ix=1; end
 
-    load('trained-SVMModels.mat')
+    load('/Users/chapnickc_slu/repos/pyRobot/run/lib/trained-SVMModels.mat')
     classes={'noise','blue','green','pink'};
-    
+
+    if size(rgb,2) < 3; return; end
+    if nargin < 2; ix = length(models); end
+
     % recursively traverse the decision tree 
     if predict(models{ix}, rgb) == 1
         predicted = classes{ix}; 
-    elseif ix < length(classes)
-        ix = ix + 1;
+    elseif ix > 0
+        ix = ix - 1;
         predicted=classify_rgb(rgb,ix);
     end
 end

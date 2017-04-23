@@ -42,10 +42,12 @@ while abs(toc) < timer
     % path planning
     [dilated, mask] = dilateObjects(img,labeled, blueix);
 
-    connecting_distance=5; 
+    connecting_distwnce=8; 
     GoalRegister=int8(zeros(size(dilated)));
     GoalRegister(endpoint(2), endpoint(1))=1;
+    tic
     optimal_path = path_AStar(startpoint(1), startpoint(2), dilated, GoalRegister, connecting_distance);
+    toc
 
 end
 
@@ -57,7 +59,13 @@ OptimalPath = optimal_path;
 
 
 
+figure(1);
+subplot(2,2,1)
+subplot(2,2,2)
+subplot(2,2,3)
 
+
+subplot(2,2,4)
 imagesc(dilated); hold on;
 p = plot(startpoint(1), startpoint(2), 'g.', ...
          endpoint(1), endpoint(2), 'c.');
@@ -69,13 +77,14 @@ hold off
 %-----------------------------------------------------------
 %           Test Code
 %-----------------------------------------------------------
-
+figure;
+imshow(img)
 % Read sample images 
 imgs = myimread('../run/images/edges_*.png');
 img = imgs{10};
 
 imshow(img)
-img = imgs{32}; imshow(img)
+img = imgs{12}; imshow(img)
 
 
 [denoised edges filled cleaned labeled] = algorithm(img, neighborhood, sigma, pxthresh);
