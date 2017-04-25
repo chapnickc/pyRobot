@@ -1,4 +1,4 @@
-function [x y alpha dilated] = Robot_position(img)
+function [x y alpha dilated robotloc] = Robot_position(img);
 
     x = []; y= []; alpha = []; dilated= [];
     neighborhood = [2 2]; 
@@ -22,6 +22,7 @@ function [x y alpha dilated] = Robot_position(img)
         FINDROBOT=false;
         front = green_coords(1:2);
         back = pink_coords(1:2);
+        robotloc = (front + back)/2;
         front_xy = rc2xy(M, front')';
         back_xy = rc2xy(M, back')';
 

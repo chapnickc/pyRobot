@@ -1,5 +1,5 @@
 function turnRobot(angle)
-    if ~any(angle == [-90, -45, 45, 90]
+    if ~any(angle == [-90, -45, 45, 90])
         return
     end
 
