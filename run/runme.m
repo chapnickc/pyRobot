@@ -3,12 +3,9 @@ addpath('../')
 addpath('../lib')
 addpath('../lib/ebel')
 addpath('../lib/ebel/matlab/')
-load FloorXform
+%load FloorXform
 
-RESAMPLE=false;
-FINDROBOT=true;
-neighborhood = [2 2]; sigma = 2; pxthresh=200;
-startpoint = [34,350]; endpoint = [510, 83];
+RESAMPLE=false; FINDROBOT=true;
 
 % Initialize Webcam Interface
 %camlist = webcamlist;
@@ -18,6 +15,9 @@ startpoint = [34,350]; endpoint = [510, 83];
 timer=60; tic
 while abs(toc) < timer
     %img = cam.snapshot;
+
+    [x, y, alpha, mask] =  Robot_position(img);
+
     [~,~,~,~, labeled] = algorithm(img, neighborhood, sigma, pxthresh);
     
     % classify the centroids of all found objects 
@@ -38,7 +38,12 @@ while abs(toc) < timer
         FINDROBOT=false;
         front = pink_coords(1:2);
         back = green_coords(1:2);
-        angle = findAngle(front,back); 
+        rc2xy(M, front')'
+
+        
+
+
+        angle = findAngle(back, front);
         disp(['angle is: ', num2str(angle)])
     else
         FINDROBOT=true;
@@ -55,7 +60,7 @@ while abs(toc) < timer
     optimal_path = pathAStar(round(robotloc(1)), round(robotloc(2)), dilated, GoalRegister, connecting_distance);
     toc
 
-
+    rc2xy(M, optimal_path')'
 end
 
 
@@ -66,7 +71,7 @@ end
 %-----------------------------------------------------------
 
 % Read sample images 
-imgs = myimread('./images/edges_*.png');
+imgs = myimread('../images/edges_*.png');
 img = imgs{7};
 
 [denoised edges filled cleaned labeled] = algorithm(img, neighborhood, sigma, pxthresh);

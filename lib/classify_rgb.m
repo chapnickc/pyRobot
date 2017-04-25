@@ -19,7 +19,7 @@
 function predicted = classify_rgb(rgb,ix)
     predicted = '';
 
-    load('/Users/chapnickc_slu/repos/pyRobot/run/lib/trained-SVMModels.mat')
+    load('trained-SVMModels.mat')
     classes={'noise','blue','green','pink'};
 
     if size(rgb,2) < 3; return; end
