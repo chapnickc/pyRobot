@@ -1,4 +1,4 @@
-pyRobot is an open-source project under the MIT License
+Robot-Navigation is an open-source project under the MIT License
 
 Copyright (c) 2016 Chad Chapnick
 

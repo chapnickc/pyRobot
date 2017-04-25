@@ -1,6 +1,8 @@
 addpath('./')
-addpath('./lib')
-addpath('./lib/ebel')
+addpath('../')
+addpath('../lib')
+addpath('../lib/ebel')
+addpath('../lib/ebel/matlab/')
 load FloorXform
 
 RESAMPLE=false;
