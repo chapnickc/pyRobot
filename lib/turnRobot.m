@@ -1,30 +1,20 @@
-function turnRobot(angle)
-    if ~any(angle == [-90, -45, 45, 90])
-        return
+function turnRobot(angle, dir)
+    iters = idivide(angle, int8(30));
+    if dir == 'left'
+        for i = 1:iters 
+            % Left 30 degrees
+            speed_set(.25, -.25);
+            pause(wt);
+            speed_set(0,0);
+        end
+
+    elseif dir == 'right'
+        for i = 1:iters 
+           % right 30 degrees
+            speed_set(-.31, .25);
+            pause(0.25);
+            speed_set(0,0);
+        end
     end
 
-   % Left 45 degrees
-    speed_set(.25, -.25);
-    pause(.7);
-    speed_set(0,0);
-
-
-    % Left 90 degrees
-    speed_set(.25,-.25);
-    pause(1.3);
-    speed_set(0,0);
-
-
-    % Right 45 degrees
-    speed_set(-.25,.25);
-    pause(.7);
-    speed_set(0,0);
-
-
-    % Right 90 degrees
-    speed_set(-.25,.25);
-    pause(1.31);
-    speed_set(0,0);
-
-    
 end

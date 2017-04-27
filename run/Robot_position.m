@@ -1,6 +1,8 @@
-function [x y alpha dilated robotloc] = Robot_position(img);
+function [x y alpha dilated results] = Robot_position(img);
 
     x = []; y= []; alpha = []; dilated= [];
+    results = struct();
+
     neighborhood = [2 2]; 
     sigma = 2; pxthresh=200; 
     startpoint = [34,350]; endpoint = [510, 83];
@@ -22,14 +24,22 @@ function [x y alpha dilated robotloc] = Robot_position(img);
         FINDROBOT=false;
         front = green_coords(1:2);
         back = pink_coords(1:2);
-        robotloc = (front + back)/2;
+        robotlix = (front + back)/2;
         front_xy = rc2xy(M, front')';
         back_xy = rc2xy(M, back')';
-
         x = (front_xy(1) + back_xy(1))/2;
         y = (front_xy(2) + back_xy(2))/2;
-        alpha = findAngle(back_xy, front_xy);
+        alpha = findAngle(front_xy, back_xy);
     end
     % path planning
     [dilated, mask] = dilateObjects(img,labeled, blueix);
+
+    results.img = img;
+    results.x = x;
+    results.y = y;
+    results.frontix = front;
+    results.backix = back;
+    results.front_xy = front_xy;
+    results.back_xy = back_xy;
+    results.robotix = robotloc;
 end

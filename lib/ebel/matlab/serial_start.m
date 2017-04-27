@@ -34,6 +34,9 @@ global obj
 serialInfo = instrhwinfo('serial');
 
 port = [];
+%port = '/dev/cu.usbserial-DN01WH91';
+%port = '/dev/tty.usbserial-DN01WH913';
+%port = '/dev/cu.usbserial-DN01WH913';
 %port = 'COM6';   % Once you know the correct COM port, hardcode it here
 if isempty(port)
   if length(serialInfo.AvailableSerialPorts) > 1
@@ -51,8 +54,6 @@ end
 
 obj = serial(port, 'BaudRate', 115200);
 obj.BytesAvailableFcnCount = 2;
-obj.BytesAvailableFcnMode = 'byte';
-obj.BytesAvailableFcn = {@serialCallBack};
 
 %fopen to the USB cord will cause the Arduino to reboot
 fopen(obj);

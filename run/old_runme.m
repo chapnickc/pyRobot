@@ -34,7 +34,10 @@ end
 % Read sample images 
 imgs = myimread('../images/edges_*.png');
 img = imgs{7};
+img = imgs{8};
 
+neighborhood = [2 2]; 
+sigma = 2; pxthresh=200; 
 [denoised edges filled cleaned labeled] = algorithm(img, neighborhood, sigma, pxthresh);
 imshow(img)
 
