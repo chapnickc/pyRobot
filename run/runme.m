@@ -49,27 +49,6 @@ while abs(toc) < timer
     plot(results.backix(1), results.backix(2),  'r.', 'MarkerSize', 20)
     plot(results.robotix(1), results.robotix(2),'g.','MarkerSize',20);
     plot(ixpath(:,2), ixpath(:,1), 'r.')
+
 end
-
-
-   wt = 0.25;
-   % Left 10 degrees
-    speed_set(.25, -.25);
-    pause(wt);
-    speed_set(0,0);
-
-
-   % right 10 degrees
-    speed_set(-.31, .25);
-    pause(0.25);
-    speed_set(0,0);
-
-
-
-    wt = 90*(0.625/45)
-
-    speed_set(0,0);
-
-    speed_set(0.25, 0.289);
-
 

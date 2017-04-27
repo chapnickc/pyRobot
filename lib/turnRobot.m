@@ -7,7 +7,6 @@ function turnRobot(angle, dir)
             pause(wt);
             speed_set(0,0);
         end
-
     elseif dir == 'right'
         for i = 1:iters 
            % right 30 degrees
