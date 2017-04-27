@@ -105,7 +105,9 @@ imshow(Z)
 
 
 % Read sample images 
-imgs = myimread('./images/edges_*.png');
-img = imgs{10};
+imgs = myimread('../train/images/april17/edges_*.png');
+imgs = myimread('../train/images/edges_*.png');
+img = imgs{35}; imshow(img)
+img = imgs{20}; imshow(img)
 
 imshow(dilated); hold on 
