@@ -5,6 +5,7 @@ M0 = load('rgb-training.mat');
 M1 = load('./april-17-rgb-training.mat');
 
 X = [M0.M(:,1:3);  M1.M(:,1:3)];         % rgb values without labels
+size(X)     
 labels = [M0.M(:,4); M1.M(:,4)];         % color labels
 classes = unique(labels);
 

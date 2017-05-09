@@ -14,7 +14,6 @@ while abs(toc) < timer
     disp('Finding the Robot...')
     [x, y, alpha, dilated, results] =  Robot_position(img);
 
-
     disp('Calculating Path...'); tic
     [optimal_path, ixpath] = findPath(dilated, results.robotix);
     toc
@@ -37,4 +36,8 @@ while abs(toc) < timer
     moveStraight(1.0)
 
 end
+
+xy1 = [258, 236];
+xy2 = [248, 256];
+findAngle(xy1, xy2)
 

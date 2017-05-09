@@ -1,5 +1,5 @@
 function [x y alpha dilated results] = Robot_position(img);
-%%
+
     x = []; y= []; alpha = []; dilated= [];
     results = struct();
 
@@ -28,20 +28,22 @@ function [x y alpha dilated results] = Robot_position(img);
         x = (front_xy(1) + back_xy(1))/2;
         y = (front_xy(2) + back_xy(2))/2;
         alpha = findAngle(front, back);
+        results.x = x;
+        results.y = y;
+        results.frontix = front;
+        results.backix = back;
+        results.front_xy = front_xy;
+        results.back_xy = back_xy;
+        results.robotix = robotix;
+
     else
-        turnRobot(45,'right');
+        alpha = nan; 
+        %turnRobot(45,'right');
     end
     % path planning
     [dilated, mask] = dilateObjects(img,labeled, blueix);
-%%
+
     results.img = img;
-    results.x = x;
-    results.y = y;
-    results.frontix = front;
-    results.backix = back;
-    results.front_xy = front_xy;
-    results.back_xy = back_xy;
-    results.robotix = robotix;
 end
 
 

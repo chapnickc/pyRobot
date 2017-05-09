@@ -1,0 +1,24 @@
+\documentclass{article} 
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\begin{document}
+\begin{tikzpicture}[level distance=1.5cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=3cm}]
+
+    classes={'noise','blue','green','pink'};
+  \node {start}
+    child { node {noise} }
+    child { node {-1}
+    child { node {blue}}
+    child {node {-1}
+        child { node {green}}
+        child {node {-1}
+        child {node {pink}}
+        child {node {unk}}
+        }
+    }
+    };
+\end{tikzpicture}
+\end{document}
+
